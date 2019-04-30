@@ -8,10 +8,33 @@ using namespace std;
 using namespace cv;
 int main()
 {
-	Mat img = imread("mochi.jpg");
-	namedWindow("image", WINDOW_NORMAL);
-	imshow("image", img);
-	waitKey(0);
+	// Convert jpg -> bmp and save in exe dir
+
+	// >0 for 3-channel img
+	//  0 for greyscale
+	// <0 return as is (w/ alpha channel)
+	Mat img = imread("mochi.jpg", 1);
+	Mat img_bmp;
+
+	// Primitive type defined in the form 
+	// CV_<bit-depth>{U|S|F}C(<number_of_channels>)
+	// U = unsigned integer, S = signed integer, F = float
+	img.convertTo(img_bmp, CV_8UC3);
+	imwrite("mochi.bmp", img_bmp);
+
+	// Convert bmp -> png and save in exe dir
+
+	Mat img2 = imread("mochi.bmp", 1);
+	//Mat img_png;
+	
+	imwrite("mochi.png", img2);
+	
+	// Display image in separate window
+	//namedWindow("image", WINDOW_NORMAL);
+	//imshow("image", img);
+	//waitKey(0);
+
+	// Status
 	return 0;
 }
 
