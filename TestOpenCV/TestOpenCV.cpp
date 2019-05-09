@@ -13,21 +13,24 @@ int main()
 	// >0 for 3-channel img
 	//  0 for greyscale
 	// <0 return as is (w/ alpha channel)
-	Mat img = imread("mochi.jpg", 1);
+	Mat img = imread("sky8k.jpg", 1);
 	Mat img_bmp;
 
 	// Primitive type defined in the form 
 	// CV_<bit-depth>{U|S|F}C(<number_of_channels>)
 	// U = unsigned integer, S = signed integer, F = float
 	img.convertTo(img_bmp, CV_8UC3);
-	imwrite("mochi.bmp", img_bmp);
+	imwrite("sky8k.bmp", img_bmp);
 
 	// Convert bmp -> png and save in exe dir
 
-	Mat img2 = imread("mochi.bmp", 1);
+	Mat img2 = imread("sky8k.bmp", 1);
 	//Mat img_png;
+
+    double min, max;
+    cv::minMaxLoc(img2, &min, &max);
 	
-	imwrite("mochi.png", img2);
+	imwrite("sky8k.png", img2);
 	
 	// Display image in separate window
 	//namedWindow("image", WINDOW_NORMAL);
